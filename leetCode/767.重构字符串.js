@@ -24,7 +24,7 @@ var reorganizeString = function(S) {
   let numAPoint = 0;
   let numBPoint = 0;
   let timesA, timesB;
-  let keys = Object.keys(map).sort((a, b) => map[b] - map[a]);
+  let keys = Object.keys(map).sort((a, b) => map[a] - map[b]);
   let count = keys.reduce((acc, cur) => acc + map[cur], 0);
   while(pointA < keys.length && pointB < keys.length) {
     timesA = map[keys[pointA]];
@@ -44,13 +44,20 @@ var reorganizeString = function(S) {
       s.push(keys[pointB]);
     }
   }
+  let index = Math.min(pointB, pointA);
+  let unFill = S.length - s.length;
+  if(index === keys.length -1 && unFill > 0 ) {
+    let fillOnlast = map[keys[index]] - unFill;
+    let birdge = 2 * fillOnlast;
+    for(let i = 0, times=0; i<= s.length - birdge && times < unFill; i+=2, times++) {
+      s.splice(i, 0, keys[index]);
+    }
+  }
   if(s.length < S.length) {
     return ''
   }
   return s.join('');
 };
-// reorganizeString('zzjjjjjjjjjjjqqqqqqqqqqq');
 
-reorganizeString('tndsewnllhrtwsvxenkscbivijfqnysamckzoyfnapuotmdexzkkrpmppttficzerdndssuveompqkemtbwbodrhwsfpbmkafpwyedpcowruntvymxtyyejqtajkcjakghtdwmuygecjncxzcxezgecrxonnszmqmecgvqqkdagvaaucewelchsmebikscciegzoiamovdojrmmwgbxeygibxxltemfgpogjkhobmhwquizuwvhfaiavsxhiknysdghcawcrphaykyashchyomklvghkyabxatmrkmrfsppfhgrwywtlxebgzmevefcqquvhvgounldxkdzndwybxhtycmlybhaaqvodntsvfhwcuhvuccwcsxelafyzushjhfyklvghpfvknprfouevsxmcuhiiiewcluehpmzrjzffnrptwbuhnyahrbzqvirvmffbxvrmynfcnupnukayjghpusewdwrbkhvjnveuiionefmnfxao');
 // @lc code=end
 
