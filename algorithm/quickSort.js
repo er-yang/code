@@ -47,7 +47,7 @@ function quickSourt2 (arr, left = 0, right = arr.length - 1) {
 
     while(start < end) {
         while( start < end && arr[end] >= pivot) {
-            end--;
+            end --;
         }
         while(start < end &&  arr[start] < pivot) {
             start ++;
