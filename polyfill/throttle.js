@@ -18,3 +18,20 @@ function throttle(fn, timer) {
     }
   };
 }
+
+function throttle(fn, timer) {
+  let timerId = null;
+  let lastTime = 0;
+  return (...args) => {
+    let now = new Data().getTime();
+    if(now - lastTime >= timer) {
+      lastTime = now;
+      return fn.apply(this, args);
+    }
+    let diff = timer - (now - lastTime);
+    clearTimeout(timerId);
+    timerId = setTimeout(() => {
+      fn.apply(this, args);
+    }, diff);
+  }
+}
