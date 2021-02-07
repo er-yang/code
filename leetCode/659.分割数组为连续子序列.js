@@ -9,6 +9,11 @@
  * @param {number[]} nums
  * @return {boolean}
  */
+/**
+ *  [1,2,3,3,4,4,5,5]
+ *  [[1 2 3 4 5]
+ *  [3 4 5]]
+ */
 var isPossible = function(nums) {
   if(nums.length < 3) {
     return false;
@@ -33,6 +38,24 @@ for(let i = 1; i < nums.length; i++) {
 return child.findIndex(item => item.length < 3) < 0;
 };
 
-console.log(isPossible([1,2,3,4,6,7,8,9,10,11]));
+// var isPossible = function (nums) {
+//   let map = {};
+//   for (let i = 0; i < nums.length; i++) {
+//     const item = nums[i];
+//     if (map[item - 1]) {
+//       if (map[item - 1].count === 1) {
+//         delete map[item - 1];
+//       }
+//       map[item - 1].count =  map[item - 1].count - 1;
+//     }
+//     map[item] = map[item] ? map[item] + 1 : 1;
+//   }
+//   for (const key of Object.keys(map)) {
+//     if(map[key] < 3) {
+//       return false;
+//     }
+//   }
+//   return true;
+// };
+console.log(isPossible([1, 2, 3, 4, 6, 7, 8, 9, 10, 11]));
 // @lc code=end
-
