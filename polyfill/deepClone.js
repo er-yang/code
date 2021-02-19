@@ -51,7 +51,8 @@ const funcTag = '[object Function]';
 const arrTag = '[object Array]';
 const regTag = '[object RegExp]';
 const mapTag = '[object Map]';
-function clone(obj, map) {
+
+function clone(obj, stack) {
   let result ;
   if(!isObject(obj)) {
     return obj;
