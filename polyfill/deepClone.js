@@ -95,3 +95,48 @@ function isObject(object) {
 let a = {arr: [1,2,3], obj: { copy: 'yes'}, r: /23/};
 let b = clone(a);
 console.log('----',  b.r.test('23'), JSON.stringify(a));
+
+
+let mapTag = '[Object Map]';
+let setTag = '[Object Set]';
+function deepClone(value) {
+  if(!isObject(value)) {
+    return value;
+  }
+  let result;
+  let tag = getTag(value);
+  if(Array.isArray(value)) {
+    result = Array(value.length);
+    for (let index = 0; index < value.length; index++) {
+      result[index] = value[index];
+    }
+  } else {
+    switch(tag) {
+      case mapTag: result = new Map();
+      case setTag: result = new Set();
+      default: result = Object.create(value.propotype);
+    }
+  }
+  if(tag === mapTag) {
+    value.forEach(item => {
+      result.add(item);
+    });
+  } else if(tag === mapTag) {
+    value.forEach((key, vlaue) => {
+      result.set(key, value);
+    })
+  }
+  let allKey = Object.keys(value);
+  for(let key of allKey) {
+    if(value.hasOwnProperty(key) && result) {
+
+    }
+  }
+}
+function isObject(value) {
+  let type = typeof value;
+  return (type === 'object' || type === 'function') && type !== null;
+}
+function getTag(value) {
+  return Object.prototype.toString.call(value);
+}

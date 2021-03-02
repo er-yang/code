@@ -16,3 +16,20 @@ function inhrite(sup, sub){
 }
 inhrite(SuperType, SubType);
 
+
+// 组合式继承
+function SuperType() {
+  this.a = 1;
+
+  this.c = function() {
+    console.log('c');
+  }
+}
+
+function SubType() {
+  SuperType.call(this);
+  this.a = 2;
+}
+SubType.prototype = new SuperType();
+
+SubType.prototype.constructor = SubType;
